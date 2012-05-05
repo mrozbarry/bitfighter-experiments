@@ -23,17 +23,18 @@
 //
 //------------------------------------------------------------------------------------
 
+#include "gameloader.hpp"
+#include "colors.hpp"
+
 /*#include "gridDB.h"
 #include "Timer.h"
-#include "gameLoader.h"
 #include "Rect.h"
-#include "Colors.h"
 #include "shipItems.h"           // For moduleInfos
 #include "dataConnection.h"      // For DataSender
 #include "SharedConstants.h"     // For badges enum
+*/
 
-#include "GameTypesEnum.h"
-#include "GameSettings.h"*/
+#include "GameSettings.hpp"
 
 #include <SDL_types.h>
 
@@ -67,22 +68,14 @@ class UIManager;
 
 struct IniSettings;
 
-// Modes the player could be in during the game
 enum UIMode {
-   PlayMode,               // Playing
-   ChatMode,               // Composing chat message
-   QuickChatMode,          // Showing quick-chat menu
-   LoadoutMode,            // Showing loadout menu
-   EngineerMode,           // Showing engineer overlay mode
-   TeamShuffleMode         // Player shuffling teams
+	LobbyMode,
+	ChatMode,
+	RespawnMode,
+	PlayMode,
+	LoadoutMode
 };
 
-enum VolumeType {
-   SfxVolumeType,
-   MusicVolumeType,
-   VoiceVolumeType,
-   ServerAlertVolumeType,
-};
 
 
 // DNS resolve ("bitfighter.org:25955") will freeze the game unless this is done as a seperate thread

@@ -72,6 +72,12 @@
     <ClInclude Include="gameloader.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="sharedconstants.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="level.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bitfighter1.0.cpp">
@@ -96,6 +102,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="gameloader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="thread.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

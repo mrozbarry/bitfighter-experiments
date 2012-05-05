@@ -1,0 +1,72 @@
+﻿Build started 4/27/2012 8:24:44 PM.
+     1>Project "C:\Users\Alexander\Chipmunk-Physics\msvc\vc10\chipmunk\chipmunk.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Release DLL\chipmunk.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         c:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\..\include\chipmunk /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D _CRT_SECURE_NO_WARNINGS /D WIN32 /D NDEBUG /D _LIB /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release DLL\\" /Fd"Release DLL\vc100.pdb" /Gd /TP /wd4068 /analyze- /errorReport:prompt ..\..\..\src\chipmunk.c ..\..\..\src\constraints\cpConstraint.c ..\..\..\src\constraints\cpDampedRotarySpring.c ..\..\..\src\constraints\cpDampedSpring.c ..\..\..\src\constraints\cpGearJoint.c ..\..\..\src\constraints\cpGrooveJoint.c ..\..\..\src\constraints\cpPinJoint.c ..\..\..\src\constraints\cpPivotJoint.c ..\..\..\src\constraints\cpRatchetJoint.c ..\..\..\src\constraints\cpRotaryLimitJoint.c ..\..\..\src\constraints\cpSimpleMotor.c ..\..\..\src\constraints\cpSlideJoint.c ..\..\..\src\cpArbiter.c ..\..\..\src\cpArray.c ..\..\..\src\cpBB.c ..\..\..\src\cpBBTree.c ..\..\..\src\cpBody.c ..\..\..\src\cpCollision.c ..\..\..\src\cpHashSet.c ..\..\..\src\cpPolyShape.c ..\..\..\src\cpShape.c ..\..\..\src\cpSpace.c ..\..\..\src\cpSpaceComponent.c ..\..\..\src\cpSpaceHash.c ..\..\..\src\cpSpaceQuery.c ..\..\..\src\cpSpaceStep.c ..\..\..\src\cpSpatialIndex.c ..\..\..\src\cpSweep1D.c ..\..\..\src\cpVect.c
+         chipmunk.c
+         cpConstraint.c
+         cpDampedRotarySpring.c
+         cpDampedSpring.c
+         cpGearJoint.c
+         cpGrooveJoint.c
+         cpPinJoint.c
+         cpPivotJoint.c
+         cpRatchetJoint.c
+         cpRotaryLimitJoint.c
+         cpSimpleMotor.c
+         cpSlideJoint.c
+         cpArbiter.c
+         cpArray.c
+         cpBB.c
+         cpBBTree.c
+         cpBody.c
+         cpCollision.c
+         cpHashSet.c
+         cpPolyShape.c
+         Compiling...
+         cpShape.c
+         cpSpace.c
+         cpSpaceComponent.c
+         cpSpaceHash.c
+         cpSpaceQuery.c
+         cpSpaceStep.c
+         cpSpatialIndex.c
+         cpSweep1D.c
+         cpVect.c
+       Link:
+         c:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"Release DLL\chipmunk.dll" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /DEF:"chipmunk.def" /MANIFEST /ManifestFile:"Release DLL\chipmunk.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Alexander\Chipmunk-Physics\msvc\vc10\chipmunk\Release DLL\chipmunk.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"Release DLL\chipmunk.lib" /MACHINE:X86 /DLL "Release DLL\chipmunk.obj"
+         "Release DLL\cpConstraint.obj"
+         "Release DLL\cpDampedRotarySpring.obj"
+         "Release DLL\cpDampedSpring.obj"
+         "Release DLL\cpGearJoint.obj"
+         "Release DLL\cpGrooveJoint.obj"
+         "Release DLL\cpPinJoint.obj"
+         "Release DLL\cpPivotJoint.obj"
+         "Release DLL\cpRatchetJoint.obj"
+         "Release DLL\cpRotaryLimitJoint.obj"
+         "Release DLL\cpSimpleMotor.obj"
+         "Release DLL\cpSlideJoint.obj"
+         "Release DLL\cpArbiter.obj"
+         "Release DLL\cpArray.obj"
+         "Release DLL\cpBB.obj"
+         "Release DLL\cpBBTree.obj"
+         "Release DLL\cpBody.obj"
+         "Release DLL\cpCollision.obj"
+         "Release DLL\cpHashSet.obj"
+         "Release DLL\cpPolyShape.obj"
+         "Release DLL\cpShape.obj"
+         "Release DLL\cpSpace.obj"
+         "Release DLL\cpSpaceComponent.obj"
+         "Release DLL\cpSpaceHash.obj"
+         "Release DLL\cpSpaceQuery.obj"
+         "Release DLL\cpSpaceStep.obj"
+         "Release DLL\cpSpatialIndex.obj"
+         "Release DLL\cpSweep1D.obj"
+         "Release DLL\cpVect.obj"
+     1>LINK : fatal error LNK1104: cannot open file 'chipmunk.def'
+     1>Done Building Project "C:\Users\Alexander\Chipmunk-Physics\msvc\vc10\chipmunk\chipmunk.vcxproj" (build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:05.10

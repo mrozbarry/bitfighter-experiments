@@ -23,12 +23,12 @@
 //
 //------------------------------------------------------------------------------------
 
-#include "GameSettings.h"
-#include "SharedConstants.h"  // For MAX_PLAYERS
+#include "GameSettings.hpp"
+#include "sharedconstants.hpp"  // For MAX_PLAYERS
 #include "config.h"           // For IniSettings, CmdLineSettings defs
 #include "BanList.h"
 #include "ScreenInfo.h"
-#include "stringUtils.h"      // For itos
+#include "stringutils.hpp"      // For itos
 
 #include "tnlTypes.h"         // For TNL_OS_WIN32 def
 #include "tnlLog.h"           // For logprintf
@@ -37,7 +37,7 @@
 #include <Windows.h>          // For ARRAYSIZE def
 #endif
 
-#include "IniFile.h"
+#include "IniFile.hpp"
 
 #include <stdio.h>
 #include <algorithm>

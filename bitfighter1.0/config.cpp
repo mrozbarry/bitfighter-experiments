@@ -26,7 +26,7 @@
 #include "input.hpp"
 #include "IniFile.hpp"
 #include "config.hpp"
-#include "gameLoader.h"    // For LevelListLoader::levelList
+#include "gameLoader.hpp"    // For LevelListLoader::levelList
 #include "version.h"
 #include "stringutils.hpp"
 #include "InputCode.h"

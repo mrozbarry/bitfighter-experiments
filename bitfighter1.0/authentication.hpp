@@ -20,7 +20,7 @@ namespace bitfighter {
 	private:
 		bool m_isLoggedIn;
 		bool m_isRegisteredUser;
-		std::string m_UserName
+		std::string m_UserName;
 	};
 
 }

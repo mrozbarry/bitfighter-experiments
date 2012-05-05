@@ -24,7 +24,7 @@
 //------------------------------------------------------------------------------------
 
 #include "color.hpp"
-#include "stringUtils.h"
+#include "stringutils.hpp"
 
 namespace bitfighter {
 
@@ -86,7 +86,7 @@ namespace bitfighter {
 	void Color::set(const Color &c) { r = c.r; g = c.g; b = c.b; }
 	void Color::set(const std::string &s)
 	{
-	   Vector<std::string> list;
+	   TNL::Vector<std::string> list;
 	   parseString(s, list, ' ');
 
 	   if(list.size() < 3)
@@ -110,7 +110,7 @@ namespace bitfighter {
 	std::string Color::toHexString() const 
 	{ 
 	   char c[7]; 
-	   dSprintf(c, sizeof(c), "%.6X", Uint32(r * 0xFF) << 24 >> 8 | Uint32(g * 0xFF) << 24 >> 16 | (Uint32(b * 0xFF) & 0xFF));
+	   TNL::dSprintf(c, sizeof(c), "%.6X", Uint32(r * 0xFF) << 24 >> 8 | Uint32(g * 0xFF) << 24 >> 16 | (Uint32(b * 0xFF) & 0xFF));
 	   return c; 
 	}
 
