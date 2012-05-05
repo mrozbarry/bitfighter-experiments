@@ -96,6 +96,7 @@
     <ClInclude Include="IniFile.hpp" />
     <ClInclude Include="input.hpp" />
     <ClInclude Include="level.hpp" />
+    <ClInclude Include="physics.hpp" />
     <ClInclude Include="ScriptEngine.hpp" />
     <ClInclude Include="server.hpp" />
     <ClInclude Include="sharedconstants.hpp" />

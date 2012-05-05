@@ -26,7 +26,7 @@
 #ifndef _GAME_SETTINGS_H_
 #define _GAME_SETTINGS_H_
 
-//#include "config.h"
+#include "config.hpp"
 //#include "InputCode.h"     // For InputCodeManager def
 
 #include "tnlVector.h"

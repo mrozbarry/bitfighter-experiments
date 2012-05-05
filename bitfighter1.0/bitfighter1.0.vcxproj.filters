@@ -78,6 +78,9 @@
     <ClInclude Include="level.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="physics.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bitfighter1.0.cpp">
