@@ -32,6 +32,8 @@
 
 #include <SDL_types.h>
 
+#include <chipmunk/chipmunk.h>
+
 #include "tnlVector.h"     // For Vector
 
 #include <string>

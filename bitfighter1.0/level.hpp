@@ -10,24 +10,6 @@
 
 namespace bitfighter {
 
-	namespace objective {
-		enum Who {
-			a_player,
-			a_team
-		};
-		// ... must ...
-		enum What {
-			stay_alive,
-			kill_players,
-			capture_the_flag,
-			capture_zones,
-			disable_a_core,
-			retrieve_flags,
-			move_a_ball_to_the_goal,
-			hold_the_flag,
-		};
-	}
-
 	class Level {
 	public:
 		/* Public Sub-Structs and Enums */
@@ -40,13 +22,7 @@ namespace bitfighter {
 			Sint32		max_players;
 		};
 
-		enum LevelObjectiveWho {
-			LOW_player,
-			LOW_team,
-		}
-		enum LevelObjectiveWhat {
-			LOW_
-		}
+		const float spaceDamping = 2.0f;
 
 		/* Class Declares */
 		Level( );
@@ -57,19 +33,21 @@ namespace bitfighter {
 		void unload( void );
 		bool save( void );
 		bool saveAs( std::string path );
-
+		Meta							meta;				// Get the author and level information
+	
 		bool addObject( physics::Object *obj );				// Add object to space
 		physics::Object *popObject( physics::Object *obj );	// Remove object from space, don't delete
 		physics::Object *popObject( std::string obj_name );	// ^ same
 		void deleteObject( std::string obj_name );			// Remove and delete object
 
-		Meta							meta;				// Get the author and level information
-	
+		void simulatePhysics( bool eraseAccumulator = false );
+
 	private:
 		cpSpace							*space;				// Physics space
 		std::vector<physics::Object *>	objects;			// Objects in the space
-		Uint32							currentTime;		// Physics helper
-		Uint32							accumulator;		// Physics helper
+		Uint32							currentTime;		// Physics helper (time between iterations)
+		Uint32							accumulator;		// Physics helper (helps pickup missed iterations)
+		float							physTick;			// Physics tick rate
 	};
 
 }

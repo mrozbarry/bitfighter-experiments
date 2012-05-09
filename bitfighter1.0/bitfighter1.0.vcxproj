@@ -88,8 +88,10 @@
     <ClInclude Include="colors.hpp" />
     <ClInclude Include="config.hpp" />
     <ClInclude Include="ConfigEnum.hpp" />
+    <ClInclude Include="DelaunayTriangulation.hpp" />
     <ClInclude Include="Directory.h" />
     <ClInclude Include="dirent.h" />
+    <ClInclude Include="exceptions.hpp" />
     <ClInclude Include="game.hpp" />
     <ClInclude Include="gameloader.hpp" />
     <ClInclude Include="GameSettings.hpp" />
@@ -99,6 +101,7 @@
     <ClInclude Include="physics.hpp" />
     <ClInclude Include="ScriptEngine.hpp" />
     <ClInclude Include="server.hpp" />
+    <ClInclude Include="shapes.hpp" />
     <ClInclude Include="sharedconstants.hpp" />
     <ClInclude Include="stringutils.hpp" />
     <ClInclude Include="thread.hpp" />
@@ -108,9 +111,13 @@
     <ClCompile Include="bitfighter1.0.cpp" />
     <ClCompile Include="color.cpp" />
     <ClCompile Include="config.cpp" />
+    <ClCompile Include="DelaunayTriangulation.cpp" />
     <ClCompile Include="gameloader.cpp" />
     <ClCompile Include="GameSettings.cpp" />
     <ClCompile Include="IniFile.cpp" />
+    <ClCompile Include="level.cpp" />
+    <ClCompile Include="physics.cpp" />
+    <ClCompile Include="shapes.cpp" />
     <ClCompile Include="stringutils.cpp" />
     <ClCompile Include="thread.cpp" />
   </ItemGroup>

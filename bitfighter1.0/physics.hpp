@@ -17,6 +17,9 @@ namespace bitfighter {
 			Object( std::string name );
 			~Object( );
 
+			void createCopy( Object *dest );
+			std::string toString( void );
+
 			virtual bool addToSpace( cpSpace *space );
 			virtual void removeFromSpace( void );
 
@@ -24,20 +27,19 @@ namespace bitfighter {
 			const std::string name( void );
 
 			bool isStatic( void );
-			bool willCollideOnMask( cpLayers layers );
-			void collideOnMask( cpLayers layers );
-			cpLayers collisionMask( void );
-
-			const cpBody *getBody( void );
-			const std::vector<cpShape *> getShapes( void );
 
 			virtual void draw( void ) = 0;
 
+			cpBody					*body;
+			std::vector<cpShape *>	shapes;
+		
 		private:
+
+			std::string body2string( );
+			std::string shapes2string( );
+
 			std::string				m_name;
 			cpSpace					*m_space;
-			cpBody					*m_body;
-			std::vector<cpShape *>	m_shapes;
 		};
 
 		class Wall : public Object {
