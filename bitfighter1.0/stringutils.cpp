@@ -24,9 +24,8 @@
 //------------------------------------------------------------------------------------
 
 #include "stringutils.hpp"
-#include "tnlPlatform.h"   // For Vector, types, and dSprintf
-#include "tnlVector.h"
-#include "tnlLog.h"
+#include <tnlPlatform.h>
+#include <tnlVector.h>
 
 #include <cstdio>
 #include <stdarg.h>        // For va_args

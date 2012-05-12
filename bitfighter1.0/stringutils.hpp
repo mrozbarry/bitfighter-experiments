@@ -34,7 +34,7 @@
 
 #include <chipmunk/chipmunk.h>
 
-#include "tnlVector.h"     // For Vector
+#include <tnlVector.h>
 
 #include <string>
 #include <map>

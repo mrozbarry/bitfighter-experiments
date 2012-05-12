@@ -7,14 +7,11 @@ using namespace bitfighter;
 
 int main(int argc, char* argv[])
 {
-	application *app = new application();
 	try {
-		std::string username = "";
-		std::string password = "";
-		client *me = new client(
-			new authentication( "http://some.host/place", 80, username, password )
-		);
+		application app( 800, 600 );
+		app.run();
 	} catch (std::exception ex) {
+		std::cout << ex.what() << std::endl;
 	}
 	return 0;
 }

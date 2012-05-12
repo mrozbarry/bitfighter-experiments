@@ -9,13 +9,16 @@
 
 namespace bitfighter {
 
+	// Forward declare the thread
+	class SDLThread;
+
 	// This class should be extended for different messages!!!
 	class SDLThreadMessage {
 	public:
 		SDLThreadMessage();
 		~SDLThreadMessage( );
 
-		virtual void process( void );
+		virtual void process( SDLThread *thread );
 
 		Uint32 timestamp( void );
 		bool isFinished( void );
@@ -23,9 +26,9 @@ namespace bitfighter {
 		bool deleteAfterRead;
 
 	private:
-		Uint32 m_timestamp;
-		bool m_done;
-		SDL_mutex *m_lock;
+		Uint32		m_timestamp;
+		bool		m_done;
+		SDL_mutex	*m_lock;
 	};
 
 	class SDLThread {
@@ -36,10 +39,12 @@ namespace bitfighter {
 		bool run( void );
 		void join( void );
 
+		unsigned int backlog( void );
+
 		void postMessage( SDLThreadMessage *msg );
 		int pollMessages( void );
 
-		virtual bool processMessage( SDLThreadMessage *msg );
+		bool processMessage( SDLThreadMessage *msg );
 
 		int lock( void );
 		int unlock( void );
@@ -47,9 +52,9 @@ namespace bitfighter {
 		static int background( void *arg );
 
 	protected:
-		SDL_Thread	*thread;
-		SDL_mutex	*mutex;
-		std::deque<SDLThreadMessage *> messageQueue;
+		SDL_Thread						*thread;
+		SDL_mutex						*mutex;
+		std::deque<SDLThreadMessage *>	messageQueue;
 	};
 
 }

@@ -7,11 +7,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SDLmain", "thirdparty\SDL\V
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SDL", "thirdparty\SDL\VisualC\SDL\SDL_VS2010.vcxproj", "{81CE8DAF-EBB2-4761-8E45-B71ABCCA8C68}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tnl", "thirdparty\tnl\tnl.vcxproj", "{5AAE89B5-1F53-4539-9899-071E68FD9A29}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libtomcrypt", "thirdparty\libtomcrypt\libtomcrypt.vcxproj", "{3F7F7B79-4473-4CAB-A54E-4274A9F1A01A}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chipmunk", "thirdparty\Chipmunk-Physics\msvc\vc10\chipmunk\chipmunk.vcxproj", "{C1ACE86E-5A14-490A-9678-104BA2546723}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tnl", "thirdparty\tnl\tnl.vcxproj", "{5AAE89B5-1F53-4539-9899-071E68FD9A29}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SDL_ttf", "thirdparty\SDL_ttf\VisualC\SDL_ttf.vcxproj", "{DDDBD07D-DC76-4AF6-8D02-3E2DEB6EE255}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -52,16 +54,6 @@ Global
 		{81CE8DAF-EBB2-4761-8E45-B71ABCCA8C68}.Release|Win32.Build.0 = Release|Win32
 		{81CE8DAF-EBB2-4761-8E45-B71ABCCA8C68}.Template|Win32.ActiveCfg = Release|Win32
 		{81CE8DAF-EBB2-4761-8E45-B71ABCCA8C68}.Template|Win32.Build.0 = Release|Win32
-		{5AAE89B5-1F53-4539-9899-071E68FD9A29}.Debug DLL|Win32.ActiveCfg = Debug|Win32
-		{5AAE89B5-1F53-4539-9899-071E68FD9A29}.Debug DLL|Win32.Build.0 = Debug|Win32
-		{5AAE89B5-1F53-4539-9899-071E68FD9A29}.Debug|Win32.ActiveCfg = Debug|Win32
-		{5AAE89B5-1F53-4539-9899-071E68FD9A29}.Debug|Win32.Build.0 = Debug|Win32
-		{5AAE89B5-1F53-4539-9899-071E68FD9A29}.Release DLL|Win32.ActiveCfg = Release|Win32
-		{5AAE89B5-1F53-4539-9899-071E68FD9A29}.Release DLL|Win32.Build.0 = Release|Win32
-		{5AAE89B5-1F53-4539-9899-071E68FD9A29}.Release|Win32.ActiveCfg = Release|Win32
-		{5AAE89B5-1F53-4539-9899-071E68FD9A29}.Release|Win32.Build.0 = Release|Win32
-		{5AAE89B5-1F53-4539-9899-071E68FD9A29}.Template|Win32.ActiveCfg = Template|Win32
-		{5AAE89B5-1F53-4539-9899-071E68FD9A29}.Template|Win32.Build.0 = Template|Win32
 		{3F7F7B79-4473-4CAB-A54E-4274A9F1A01A}.Debug DLL|Win32.ActiveCfg = Debug|Win32
 		{3F7F7B79-4473-4CAB-A54E-4274A9F1A01A}.Debug DLL|Win32.Build.0 = Debug|Win32
 		{3F7F7B79-4473-4CAB-A54E-4274A9F1A01A}.Debug|Win32.ActiveCfg = Debug|Win32
@@ -82,6 +74,26 @@ Global
 		{C1ACE86E-5A14-490A-9678-104BA2546723}.Release|Win32.Build.0 = Release|Win32
 		{C1ACE86E-5A14-490A-9678-104BA2546723}.Template|Win32.ActiveCfg = Release|Win32
 		{C1ACE86E-5A14-490A-9678-104BA2546723}.Template|Win32.Build.0 = Release|Win32
+		{5AAE89B5-1F53-4539-9899-071E68FD9A29}.Debug DLL|Win32.ActiveCfg = Debug|Win32
+		{5AAE89B5-1F53-4539-9899-071E68FD9A29}.Debug DLL|Win32.Build.0 = Debug|Win32
+		{5AAE89B5-1F53-4539-9899-071E68FD9A29}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5AAE89B5-1F53-4539-9899-071E68FD9A29}.Debug|Win32.Build.0 = Debug|Win32
+		{5AAE89B5-1F53-4539-9899-071E68FD9A29}.Release DLL|Win32.ActiveCfg = Release|Win32
+		{5AAE89B5-1F53-4539-9899-071E68FD9A29}.Release DLL|Win32.Build.0 = Release|Win32
+		{5AAE89B5-1F53-4539-9899-071E68FD9A29}.Release|Win32.ActiveCfg = Release|Win32
+		{5AAE89B5-1F53-4539-9899-071E68FD9A29}.Release|Win32.Build.0 = Release|Win32
+		{5AAE89B5-1F53-4539-9899-071E68FD9A29}.Template|Win32.ActiveCfg = Template|Win32
+		{5AAE89B5-1F53-4539-9899-071E68FD9A29}.Template|Win32.Build.0 = Template|Win32
+		{DDDBD07D-DC76-4AF6-8D02-3E2DEB6EE255}.Debug DLL|Win32.ActiveCfg = Debug|Win32
+		{DDDBD07D-DC76-4AF6-8D02-3E2DEB6EE255}.Debug DLL|Win32.Build.0 = Debug|Win32
+		{DDDBD07D-DC76-4AF6-8D02-3E2DEB6EE255}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DDDBD07D-DC76-4AF6-8D02-3E2DEB6EE255}.Debug|Win32.Build.0 = Debug|Win32
+		{DDDBD07D-DC76-4AF6-8D02-3E2DEB6EE255}.Release DLL|Win32.ActiveCfg = Template|Win32
+		{DDDBD07D-DC76-4AF6-8D02-3E2DEB6EE255}.Release DLL|Win32.Build.0 = Template|Win32
+		{DDDBD07D-DC76-4AF6-8D02-3E2DEB6EE255}.Release|Win32.ActiveCfg = Template|Win32
+		{DDDBD07D-DC76-4AF6-8D02-3E2DEB6EE255}.Release|Win32.Build.0 = Template|Win32
+		{DDDBD07D-DC76-4AF6-8D02-3E2DEB6EE255}.Template|Win32.ActiveCfg = Template|Win32
+		{DDDBD07D-DC76-4AF6-8D02-3E2DEB6EE255}.Template|Win32.Build.0 = Template|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

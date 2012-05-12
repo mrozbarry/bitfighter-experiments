@@ -39,12 +39,12 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\Alexander\bitfighter-experiments\thirdparty\Chipmunk-Physics\include;C:\Users\Alexander\Documents\Visual Studio 2010\Projects\bitfighter1.0\thirdparty\SDL\include;C:\Users\Alexander\Documents\Visual Studio 2010\Projects\bitfighter1.0\thirdparty\tnl;$(IncludePath)</IncludePath>
-    <LibraryPath>../thirdparty/tnl/Debug;../thirdparty/SDL/Win32/Debug;../thirdparty/Chipmunk-Physics/msvc/chipmunk/Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Program Files\GnuWin32\include;C:\Users\Alexander\bitfighter-experiments\thirdparty\SDL_ttf;C:\Users\Alexander\bitfighter-experiments\thirdparty\Chipmunk-Physics\include;C:\Users\Alexander\Documents\Visual Studio 2010\Projects\bitfighter1.0\thirdparty\SDL\include;C:\Users\Alexander\Documents\Visual Studio 2010\Projects\bitfighter1.0\thirdparty\tnl;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files\GnuWin32\lib;../Debug;../thirdparty/SDL/VisualC/SDL/Win32/Debug;../thirdparty/SDL/VisualC/SDLmain/Win32/Debug;../thirdparty/Chipmunk-Physics/msvc/vc10/chipmunk/Debug;../thirdparty/SDL_ttf/VisualC/Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\Users\Alexander\bitfighter-experiments\thirdparty\Chipmunk-Physics\include;C:\Users\Alexander\Documents\Visual Studio 2010\Projects\bitfighter1.0\thirdparty\SDL\include;C:\Users\Alexander\Documents\Visual Studio 2010\Projects\bitfighter1.0\thirdparty\tnl;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\Alexander\bitfighter-experiments\thirdparty\SDL_ttf;C:\Users\Alexander\bitfighter-experiments\thirdparty\Chipmunk-Physics\include;C:\Users\Alexander\Documents\Visual Studio 2010\Projects\bitfighter1.0\thirdparty\SDL\include;C:\Users\Alexander\Documents\Visual Studio 2010\Projects\bitfighter1.0\thirdparty\tnl;$(IncludePath)</IncludePath>
     <LibraryPath>../thirdparty/tnl/Debug;../thirdparty/SDL/Win32/Debug;../thirdparty/Chipmunk-Physics/msvc/chipmunk/Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -57,7 +57,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDLmain.lib;SDL.lib;chipmunk.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDLmain.lib;SDL.lib;chipmunk.lib;freetype.lib;SDL_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -84,41 +84,18 @@
     <ClInclude Include="application.hpp" />
     <ClInclude Include="authentication.hpp" />
     <ClInclude Include="client.hpp" />
-    <ClInclude Include="color.hpp" />
-    <ClInclude Include="colors.hpp" />
-    <ClInclude Include="config.hpp" />
-    <ClInclude Include="ConfigEnum.hpp" />
-    <ClInclude Include="DelaunayTriangulation.hpp" />
-    <ClInclude Include="Directory.h" />
-    <ClInclude Include="dirent.h" />
     <ClInclude Include="exceptions.hpp" />
-    <ClInclude Include="game.hpp" />
-    <ClInclude Include="gameloader.hpp" />
-    <ClInclude Include="GameSettings.hpp" />
-    <ClInclude Include="IniFile.hpp" />
-    <ClInclude Include="input.hpp" />
-    <ClInclude Include="level.hpp" />
-    <ClInclude Include="physics.hpp" />
-    <ClInclude Include="ScriptEngine.hpp" />
+    <ClInclude Include="menuitem.hpp" />
+    <ClInclude Include="menu.hpp" />
     <ClInclude Include="server.hpp" />
     <ClInclude Include="shapes.hpp" />
-    <ClInclude Include="sharedconstants.hpp" />
-    <ClInclude Include="stringutils.hpp" />
     <ClInclude Include="thread.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="application.cpp" />
     <ClCompile Include="bitfighter1.0.cpp" />
-    <ClCompile Include="color.cpp" />
-    <ClCompile Include="config.cpp" />
-    <ClCompile Include="DelaunayTriangulation.cpp" />
-    <ClCompile Include="gameloader.cpp" />
-    <ClCompile Include="GameSettings.cpp" />
-    <ClCompile Include="IniFile.cpp" />
-    <ClCompile Include="level.cpp" />
-    <ClCompile Include="physics.cpp" />
-    <ClCompile Include="shapes.cpp" />
-    <ClCompile Include="stringutils.cpp" />
+    <ClCompile Include="menu.cpp" />
+    <ClCompile Include="menuitem.cpp" />
     <ClCompile Include="thread.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

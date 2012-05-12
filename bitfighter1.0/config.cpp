@@ -27,22 +27,22 @@
 #include "IniFile.hpp"
 #include "config.hpp"
 #include "gameLoader.hpp"    // For LevelListLoader::levelList
-#include "version.h"
+//#include "version.h"
 #include "stringutils.hpp"
-#include "InputCode.h"
-#include "BanList.h"
+//#include "InputCode.h"
+//#include "BanList.h"
 #include "colors.hpp"
 
-#include "ship.h"          // For Ship::std::stringToLoadout (this could be moved?)
+//#include "ship.h"          // For Ship::std::stringToLoadout (this could be moved?)
 
 #include "GameSettings.hpp"
 
 #ifndef BITFIGHTER_DEDICATED
-#include "Joystick.h"
-#include "quickChatHelper.h"
+//#include "Joystick.h"
+//#include "quickChatHelper.h"
 #endif
 
-#include "dataConnection.h"   // For defs of stuff used by transferResource() function below
+//#include "dataConnection.h"   // For defs of stuff used by transferResource() function below
 
 #ifdef _MSC_VER
 #pragma warning (disable: 4996)     // Disable POSIX deprecation, certain security warnings that seem to be specific to VC++

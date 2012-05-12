@@ -129,9 +129,9 @@ private:
 
    Vector<string> mLevelSkipList;      // Levels we'll never load, to create a pseudo delete function for remote server mgt  <=== does this ever get loaded???
    static FolderManager *mFolderManager;
-   InputCodeManager mInputCodeManager;
+   //InputCodeManager mInputCodeManager;
 
-   BanList *mBanList;                  // Our ban list
+   //BanList *mBanList;                  // Our ban list
 
    //CmdLineSettings mCmdLineSettings;
    IniSettings mIniSettings;

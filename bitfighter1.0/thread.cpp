@@ -16,7 +16,7 @@ namespace bitfighter {
 		SDL_DestroyMutex( this->m_lock );
 	}
 
-	void SDLThreadMessage::process( void )
+	void SDLThreadMessage::process( SDLThread *thread )
 	{
 		SDL_mutexP( this->m_lock );
 		// No nothing, just report being done
@@ -72,6 +72,15 @@ namespace bitfighter {
 		SDL_DestroyMutex( this->mutex );
 	}
 
+	unsigned int SDLThread::backlog( void )
+	{
+		unsigned int inQueue = 0;
+		this->lock();
+		inQueue = this->messageQueue.size();
+		this->unlock();
+		return inQueue;
+	}
+
 	void SDLThread::postMessage( SDLThreadMessage *msg )
 	{
 		if( !this->thread ) return;
@@ -100,8 +109,8 @@ namespace bitfighter {
 				if( me->messageQueue[0] ) {		// If we have a valid message, let's process it
 					SDLThreadMessage *msg = me->messageQueue[0];
 					me->messageQueue.pop_front();
-					msg->process();
-					if( msg->deleteAfterRead ) delete msg;
+					msg->process( me );
+					if( msg->deleteAfterRead && msg->isFinished() ) delete msg;
 					wait_ms = 50;
 				} else {						// If we get a NULL message, it means it's time to get the frig out
 					keepRunning = false;

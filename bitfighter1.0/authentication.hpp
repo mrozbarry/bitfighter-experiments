@@ -3,10 +3,13 @@
 
 namespace bitfighter {
 
+	// Forward declare the application
+	class application;
+
 	class authentication {
 	public:
-		authentication( std::string host, int port );
-		authentication( std::string host, int port, std::string username, std::string password );
+		authentication( application *app, std::string host, int port );
+		authentication( application *app, std::string host, int port, std::string username, std::string password );
 		~authentication( );
 
 		bool login( std::string username, std::string password );
@@ -18,9 +21,10 @@ namespace bitfighter {
 		const char *getUserName( void );
 
 	private:
-		bool m_isLoggedIn;
-		bool m_isRegisteredUser;
+		bool		m_isLoggedIn;
+		bool		m_isRegisteredUser;
 		std::string m_UserName;
+		application	*m_app;
 	};
 
 }

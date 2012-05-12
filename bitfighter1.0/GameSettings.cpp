@@ -24,10 +24,10 @@
 //------------------------------------------------------------------------------------
 
 #include "GameSettings.hpp"
-#include "sharedconstants.hpp"  // For MAX_PLAYERS
-#include "config.h"           // For IniSettings, CmdLineSettings defs
-#include "BanList.h"
-#include "ScreenInfo.h"
+//#include "sharedconstants.hpp"  // For MAX_PLAYERS
+#include "config.hpp"           // For IniSettings, CmdLineSettings defs
+//#include "BanList.h"
+//#include "ScreenInfo.h"
 #include "stringutils.hpp"      // For itos
 
 #include "tnlTypes.h"         // For TNL_OS_WIN32 def

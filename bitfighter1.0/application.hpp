@@ -1,11 +1,14 @@
 
 #include <SDL.h>
-#include "authentication.hpp"
-#include "client.hpp"
+#include <SDL_opengl.h>
+#include <SDL_ttf.h>
+
+//#include "authentication.hpp"
+//#include "client.hpp"
 #include "server.hpp"
 #include "thread.hpp"
-#include "GameSettings.hpp"
-#include "IniFile.hpp"
+
+#include "menu.hpp"
 
 #include <utility>
 #include <vector>
@@ -13,31 +16,42 @@
 #ifndef bitfighter_application_hpp
 #define bitfighter_application_hpp	1
 
+/* Number of threads the application juggles */
+#ifndef BITFIGHTER_ACTIVE_THREADS
+#define BITFIGHTER_ACTIVE_THREADS	4
+#endif
+
 namespace bitfighter {
 
 	class application {
 	public:
 		/* Public Class Enums and Structs */
-		enum VolumeType {
+		/*enum VolumeType {
 			SfxVolumeType,
 			MusicVolumeType,
 			VoiceVolumeType,
 			ServerAlertVolumeType
-		};
+		};*/
 
-		application( );
+		application( int width, int height );
 		~application( );
 
-		SDL_Window *createWindow( int width, int height, int bbp, Uint32 flags, bool makeCurrent = true, std::string name = "" );
-		void destroyWindow( std::string name );
-		void destroyWindow( SDL_Window *wnd );
+		SDL_Window *getWindow( void );
+
+		SDLThreadMessage *newTask( SDLThreadMessage *task, bool highPriority = false );
+
+		void run( void );
 
 	protected:
-		authentication *auth;
-		client *local;
+		int getShortestThreadingQueue( void );
 
-		std::vector< SDL_Window * > windows;
-		std::vector< SDLThread * > threads;
+		//authentication *auth;
+		//client *local;
+
+		SDL_Window					*window;
+		SDL_GLContext				glctx;
+		SDLThread					*threads[BITFIGHTER_ACTIVE_THREADS];
+
 
 	};
 
