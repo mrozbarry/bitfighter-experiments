@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <SDL.h>
+#include "sdlutil.hpp"
 
 #ifndef bitfighter_menu_hpp
 #define bitfighter_menu_hpp	1
@@ -20,7 +21,7 @@ namespace bitfighter {
 		void paint( void );
 
 	private:
-		SDL_Surface					*m_buffer;
+		SDL::Surface				*m_buffer;
 		SDL_Rect					m_bounds;
 		bool						m_scrollable;
 		std::vector< MenuItem * >	m_items;

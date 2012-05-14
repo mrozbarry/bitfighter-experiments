@@ -51,7 +51,7 @@ namespace bitfighter {
 		SDL_Window					*window;
 		SDL_GLContext				glctx;
 		SDLThread					*threads[BITFIGHTER_ACTIVE_THREADS];
-
+		std::vector<TTF_Font *>		fonts;
 
 	};
 

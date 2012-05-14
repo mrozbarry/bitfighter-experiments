@@ -2,6 +2,8 @@
 #include <SDL.h>
 #include <string>
 #include "menu.hpp"
+#include "font.hpp"
+#include "sdlutil.hpp"
 
 #ifndef bitfighter_menuitem_hpp
 #define bitfighter_menuitem_hpp	1
@@ -15,12 +17,12 @@ namespace bitfighter {
 
 		virtual void process( SDL_Event *e );
 		virtual void render( void );
-		SDL_Surface *getBuffer( void );
+		SDL::Surface *getBuffer( void );
 
 		Menu			*subMenu;
 
 	protected:
-		SDL_Surface		*m_buffer;
+		SDL::Surface	*m_buffer;
 	};
 
 	class MenuText : public MenuItem {

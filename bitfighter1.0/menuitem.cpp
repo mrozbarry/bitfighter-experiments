@@ -10,7 +10,7 @@ namespace bitfighter {
 
 	MenuItem::~MenuItem( )
 	{
-		if( this->m_buffer ) SDL_FreeSurface( this->m_buffer );
+		if( this->m_buffer ) delete this->m_buffer;
 	}
 
 	void MenuItem::process( SDL_Event *e )
@@ -23,7 +23,7 @@ namespace bitfighter {
 		return;
 	}
 
-	SDL_Surface *MenuItem::getBuffer( void )
+	SDL::Surface *MenuItem::getBuffer( void )
 	{
 		return this->m_buffer;
 	}

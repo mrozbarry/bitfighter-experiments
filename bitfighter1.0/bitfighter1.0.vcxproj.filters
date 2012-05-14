@@ -45,6 +45,12 @@
     <ClInclude Include="menuitem.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="font.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sdlutil.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bitfighter1.0.cpp">
@@ -60,6 +66,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="menuitem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="font.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sdlutil.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
