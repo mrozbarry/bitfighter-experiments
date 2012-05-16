@@ -14,16 +14,22 @@ namespace bitfighter {
 	class Menu {
 	public:
 		Menu( );
-		Menu( SDL_Rect boundaries, bool canScroll );
+		Menu( SDL_Rect boundaries );
+		Menu( int x, int y, int w, int h );
+
 		~Menu( );
 
+		MenuItem *addItem( MenuItem *item, void *callback );
+
 		bool dispatchEvents( void );
+		void render( void );
 		void paint( void );
+
+		SDL::Surface *getBuffer( void );
 
 	private:
 		SDL::Surface				*m_buffer;
 		SDL_Rect					m_bounds;
-		bool						m_scrollable;
 		std::vector< MenuItem * >	m_items;
 	};
 

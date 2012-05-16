@@ -1,82 +1,111 @@
 
 #include "application.hpp"
-
+#include "menu.hpp"
+#include "menuitem.hpp"
 
 namespace bitfighter {
 
-	application::application( int width, int height )
+	Application::Application( )
 	{
+		if( SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER) < 0 ) { throw new SDLException("Application"); }
+
+		if( TTF_Init() < 0 ) { throw new TTFException("Application"); }
+
 		for( int i = 0; i < BITFIGHTER_ACTIVE_THREADS; i++ ) {
 			this->threads[i] = new SDLThread();
 		}
-
-		if( SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER) < 0 ) {
-			// throw new SDLException("Init");
-		}
-
-		if( TTF_Init() < 0 ) {
-			// throw new TTFException("Init");
-		}
-
-		//SDL_DisplayMode mode;
-		//SDL_GetCurrentDisplayMode(0, &mode);
-
-		this->window = SDL_CreateWindow(
-			"Bitfighter",
-			SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-			width, height,
-			SDL_WINDOW_OPENGL|SDL_WINDOW_RESIZABLE|SDL_WINDOW_SHOWN
-		);
-
-		glctx = SDL_GL_CreateContext( this->window );
-
-		SDL_GL_SetSwapInterval(1);
-
-		SDL_GL_SetAttribute( SDL_GL_RED_SIZE, 8 );
-		SDL_GL_SetAttribute( SDL_GL_GREEN_SIZE, 8 );
-		SDL_GL_SetAttribute( SDL_GL_BLUE_SIZE, 8 );
-		SDL_GL_SetAttribute( SDL_GL_ALPHA_SIZE, 8 );
-		SDL_GL_SetAttribute( SDL_GL_DEPTH_SIZE, 16 );
-		SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
-
-		SDL_Surface *icon = SDL_LoadBMP("bficon.bmp");
-		if(icon != NULL) {
-			SDL_SetColorKey(icon, 1, SDL_MapRGB(icon->format, 0, 0, 0));
-			SDL_SetWindowIcon( this->window, icon);
-		}
 	}
 
-	application::~application( )
+	Application::~Application( )
 	{
-		for( int i = 0; i < BITFIGHTER_ACTIVE_THREADS; i++ ) {
+		unsigned int i = 0;
+		for(i=0; i < this->fonts.size(); i++ ) {
+			delete this->fonts[i].font;
+		}
+
+		for(i = 0; i < BITFIGHTER_ACTIVE_THREADS; i++ ) {
 			delete this->threads[i];
+		}
+
+		for(i = 0; i < this->windows.size(); i++) {
+			delete this->windows[i];
 		}
 
 		TTF_Quit();
 		SDL_Quit();
 	}
 
-	SDL_Window *application::getWindow( void )
+	SDL::Window *Application::newWindow( SDL::Window *w )
 	{
-		return this->window;
+		if( !w ) throw new BitfighterException( "Application", "Cannot add NULL window", __FILE__, __LINE__ );
+		this->windows.push_back( w );
+		return w;
 	}
 
-	SDLThreadMessage *application::newTask( SDLThreadMessage *task, bool highPriority )
+	SDLThreadMessage *Application::newTask( SDLThreadMessage *task, bool highPriority )
 	{
 		int useQueue = this->getShortestThreadingQueue();
 		this->threads[useQueue]->postMessage( task );
 		return task;
 	}
 
-	void application::run( void )
+	void Application::run( void )
 	{
-		Menu *main = new Menu();
-		while( !main->dispatchEvents() ) {
-			SDL_GL_SwapWindow( this->window );
+		Menu *main = new Menu( 25, 300, 100, 150 );
+		main->addItem( new MenuText( this, "Sandbox" ), NULL );
+		main->addItem( new MenuText( this, "Join LAN/Internet Game" ), NULL );
+		main->addItem( new MenuText( this, "Host Game" ), NULL );
+		main->addItem( new MenuText( this, "Instructions" ), NULL );
+		main->addItem( new MenuText( this, "Options" ), NULL );
+		main->addItem( new MenuText( this, "Highscores" ), NULL );
+		main->addItem( new MenuText( this, "Level Editor" ), NULL );
+		main->addItem( new MenuText( this, "Credits" ), NULL );
+		main->addItem( new MenuText( this, "Exit" ), NULL );
+		main->render( );
+
+		while( this->dispatchEvents() ) {
+			for(unsigned int i=0; i < this->windows.size(); i++) {
+				this->windows[i]->paint();
+			}
 		}
 	}
 
-	int application::getShortestThreadingQueue( void )
+	bool Application::dispatchEvents( void )
+	{
+		SDL_Event e;
+		while( SDL_PollEvent( &e ) ) {
+			switch( e.type ) {
+			case SDL_QUIT:
+				return false;
+				break;
+			case SDL_WINDOWEVENT_CLOSE:
+				closeWindow( e.window.windowID );
+				if( this->windows.size() == 0 ) return false;
+				break;
+			}
+		}
+		return true;
+	}
+
+	void Application::addFont( std::string key, Font *font )
+	{
+		if( !font ) { return; } // Also throw an exception?
+		AppFont af;
+		af.key = key;
+		af.font = font;
+		this->fonts.push_back( af );
+	}
+
+	int Application::getFonts( std::string key, std::vector<Font *> &fontlist )
+	{
+		fontlist.clear();
+		for(unsigned int i=0; i < this->fonts.size(); i++ ) {
+			if( key.compare( this->fonts[i].key ) == 0 ) fontlist.push_back( this->fonts[i].font );
+		}
+		return (int)fontlist.size();
+	}
+
+	int Application::getShortestThreadingQueue( void )
 	{
 		unsigned int num = this->threads[0]->backlog();
 		int index = 0;
@@ -85,6 +114,21 @@ namespace bitfighter {
 			if( n < num ) { num = n; index = i; }
 		}
 		return index;
+	}
+
+	int Application::getWindow( Uint32 window_id )
+	{
+		for( unsigned int i=0; i < this->windows.size(); i++ ) {
+			if( this->windows[i]->getId() == window_id ) return (int)i;
+		}
+		return -1;
+	}
+
+	void Application::closeWindow( Uint32 window_id )
+	{
+		int index = this->getWindow( window_id );
+		delete this->windows[index];
+		this->windows.erase( this->windows.begin() + index );
 	}
 
 }

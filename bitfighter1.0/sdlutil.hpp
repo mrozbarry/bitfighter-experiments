@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include <SDL_opengl.h>
 #include <string>
+#include "exceptions.hpp"
 
 #ifndef bitfighter_sdlutil_hpp
 #define bitfighter_sdlutil_hpp	1
@@ -12,6 +13,8 @@ namespace bitfighter {
 
 		class Surface {
 		public:
+			Surface( SDL_Surface *surface );
+			Surface( Surface *copySource );
 			Surface( int w, int h, int depth, bool alpha = false );
 			Surface( std::string bmp_path );
 			~Surface( );
@@ -28,6 +31,8 @@ namespace bitfighter {
 			SDL_Rect getClip( void );
 
 			void openglBindTexture( void );
+
+			static int next_pow2( int num );
 
 		private:
 			SDL_Surface		*m_surface;

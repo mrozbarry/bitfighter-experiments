@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\renderables">
+      <UniqueIdentifier>{e5c35d2b-0f5d-47c4-b34b-d0717c251675}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -51,6 +54,18 @@
     <ClInclude Include="sdlutil.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="colours.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="window.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="renderable.hpp">
+      <Filter>Header Files\renderables</Filter>
+    </ClInclude>
+    <ClInclude Include="point.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bitfighter1.0.cpp">
@@ -72,6 +87,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sdlutil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="exceptions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

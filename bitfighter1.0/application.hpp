@@ -7,8 +7,8 @@
 //#include "client.hpp"
 #include "server.hpp"
 #include "thread.hpp"
-
-#include "menu.hpp"
+#include "font.hpp"
+#include "window.hpp"
 
 #include <utility>
 #include <vector>
@@ -23,7 +23,9 @@
 
 namespace bitfighter {
 
-	class application {
+	class Menu;
+
+	class Application {
 	public:
 		/* Public Class Enums and Structs */
 		/*enum VolumeType {
@@ -33,26 +35,37 @@ namespace bitfighter {
 			ServerAlertVolumeType
 		};*/
 
-		application( int width, int height );
-		~application( );
+		struct AppFont {
+			std::string	key;
+			Font		*font;
+		};
 
-		SDL_Window *getWindow( void );
+		Application( );
+		~Application( );
+
+		SDL::Window *newWindow( SDL::Window *w );
 
 		SDLThreadMessage *newTask( SDLThreadMessage *task, bool highPriority = false );
 
 		void run( void );
+		bool dispatchEvents( void );
+
+		void addFont( std::string key, Font *font );
+		int getFonts( std::string key, std::vector<Font *> &fonts );
 
 	protected:
 		int getShortestThreadingQueue( void );
 
+		int getWindow( Uint32 window_id );
+		void closeWindow( Uint32 window_id );
+
 		//authentication *auth;
 		//client *local;
 
-		SDL_Window					*window;
-		SDL_GLContext				glctx;
-		SDLThread					*threads[BITFIGHTER_ACTIVE_THREADS];
-		std::vector<TTF_Font *>		fonts;
+		std::vector<SDL::Window *>	windows;
 
+		SDLThread					*threads[BITFIGHTER_ACTIVE_THREADS];
+		std::vector<AppFont>		fonts;
 	};
 
 }

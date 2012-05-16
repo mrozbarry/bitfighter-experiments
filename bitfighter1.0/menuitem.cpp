@@ -1,12 +1,17 @@
 
 #include "menuitem.hpp"
+#include "application.hpp"
 
 namespace bitfighter {
 
 	/* MenuItem Base Class */
-	MenuItem::MenuItem( )
-		: m_buffer( NULL )
-	{	}
+	MenuItem::MenuItem( Application *app, ItemType it )
+		: m_app( app )
+		, m_buffer( NULL )
+		, m_itemtype( it )
+	{
+		if( !app ) { throw new BitfighterException( "MenuItem", "Null application" ); }
+	}
 
 	MenuItem::~MenuItem( )
 	{
@@ -28,11 +33,18 @@ namespace bitfighter {
 		return this->m_buffer;
 	}
 
+	MenuItem::ItemType MenuItem::getType( void )
+	{
+		return this->m_itemtype;
+	}
+
 	/* Plain text in the menu */
-	MenuText::MenuText( std::string text )
-		: m_text( text )
+	MenuText::MenuText( Application *app, std::string text )
+		: MenuItem( app, IT_StaticText )
+		, m_text( text + " >" )
 	{
 		this->m_buffer = NULL; // SDL_ttf?
+		this->render( );
 	}
 
 	MenuText::~MenuText( )
@@ -45,16 +57,30 @@ namespace bitfighter {
 
 	void MenuText::render( void )
 	{
+		std::vector<Font *> fonts;
+
+		this->m_app->getFonts( "menu", fonts );
+		FontText *text = new FontText( fonts[0] );
+
+		text->setColor( blue80 );
+
+		text->blendedText( this->m_text );
+
+		this->m_buffer = new SDL::Surface( text->getLastSurface() );
+
+		delete text;
 		return;
 	}
 
 	/* Menu On/Off Switch */
-	MenuToggle::MenuToggle( std::string text, std::string text_true, std::string text_false )
-		: m_text( text )
+	MenuToggle::MenuToggle( Application *app, std::string text, std::string text_true, std::string text_false, bool value )
+		: MenuItem( app, IT_Toggable )
+		, m_text( text )
 		, m_on( text_true )
 		, m_off( text_false )
+		, m_value( value )
 	{
-		this->m_buffer = NULL;
+		this->render();
 	}
 
 	MenuToggle::~MenuToggle( )
@@ -72,26 +98,26 @@ namespace bitfighter {
 	
 	void MenuToggle::set( bool value )
 	{
-		// do a toggle
+		this->m_value = value;
 	}
 
 	bool MenuToggle::get( void )
 	{
-		return false;
+		return this->m_value;
 	}
 
 	/* Menu Plain-text Input */
-	MenuPlainInput::MenuPlainInput( std::string prompt )
-		: m_prompt( prompt )
-		, m_text( "" )
+	MenuPlainInput::MenuPlainInput( Application *app, std::string prompt )
+		: MenuItem( app, IT_TextInput )
+		, m_prompt( prompt )
 		, m_filter( "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-=!@#$%^&*()_+[];',./\\{}|:\"<>?" )
 	{
 		this->m_buffer = NULL;
 	}
 
-	MenuPlainInput::MenuPlainInput( std::string prompt, std::string filter )
-		: m_prompt( prompt )
-		, m_text( "" )
+	MenuPlainInput::MenuPlainInput( Application *app, std::string prompt, std::string filter )
+		: MenuItem( app, IT_TextInput )
+		, m_prompt( prompt )
 		, m_filter( filter )
 	{
 		this->m_buffer = NULL;
@@ -110,20 +136,10 @@ namespace bitfighter {
 		return;
 	}
 
-	void MenuPlainInput::set( std::string value )
-	{
-		this->m_text = value;
-	}
-
-	std::string MenuPlainInput::get( void )
-	{
-		return this->m_text;
-	}
-
 	/* Same as above, but with a character mask for passwords */
-	MenuPasswordInput::MenuPasswordInput( std::string prompt, char mask )
-		: m_prompt( prompt )
-		, m_password( "" )
+	MenuPasswordInput::MenuPasswordInput( Application *app, std::string prompt, char mask )
+		: MenuItem( app, IT_PasswordInput )
+		, m_prompt( prompt )
 		, m_mask( mask )
 	{
 		this->m_buffer = NULL;
@@ -140,16 +156,6 @@ namespace bitfighter {
 	void MenuPasswordInput::render( void )
 	{
 		return;
-	}
-
-	void MenuPasswordInput::set( std::string value )
-	{
-		this->m_password = value;
-	}
-
-	std::string MenuPasswordInput::get( void )
-	{
-		return this->m_password;
 	}
 
 }

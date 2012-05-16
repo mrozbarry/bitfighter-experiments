@@ -3,6 +3,8 @@
 #include <SDL_ttf.h>
 #include <string>
 #include <vector>
+#include "exceptions.hpp"
+#include "sdlutil.hpp"
 
 #ifndef bitfighter_font_hpp
 #define bitfighter_font_hpp	1
@@ -17,19 +19,20 @@ namespace bitfighter {
 		~FontText( );
 
 		void setColor( SDL_Color fgc );
+		void setColor( Uint8 r, Uint8 g, Uint8 b );
 		SDL_Color getColor( void );
 
-		SDL_Surface *solidText( std::string text );
-		SDL_Surface *shadedText( std::string text );
-		SDL_Surface *blendedText( std::string text );
+		SDL::Surface *solidText( std::string text );
+		SDL::Surface *shadedText( std::string text );
+		SDL::Surface *blendedText( std::string text );
 
-		SDL_Surface *getLastSurface( void );
+		SDL::Surface *getLastSurface( void );
 
 	private:
-		Font		*m_font;
-		SDL_Surface	*m_cache;
-		SDL_Color	m_color;
-		SDL_Color	m_background;
+		Font			*m_font;
+		SDL::Surface	*m_cache;
+		SDL_Color		m_color;
+		SDL_Color		m_background;
 	};
 
 	class Font {

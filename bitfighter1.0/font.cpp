@@ -18,7 +18,7 @@ namespace bitfighter {
 
 	FontText::~FontText( )
 	{
-		if( this->m_cache ) SDL_FreeSurface( this->m_cache );
+		if( this->m_cache ) delete this->m_cache;
 	}
 
 	void FontText::setColor( SDL_Color fgc )
@@ -27,33 +27,44 @@ namespace bitfighter {
 		this->m_color.g = fgc.g;
 		this->m_color.b = fgc.b;
 	}
+
+	void FontText::setColor( Uint8 r, Uint8 g, Uint8 b )
+	{
+		this->m_color.r = r;
+		this->m_color.g = g;
+		this->m_color.b = b;
+	}
+
 	SDL_Color FontText::getColor( void )
 	{
 		return this->m_color;
 	}
 
-	SDL_Surface *FontText::solidText( std::string text )
+	SDL::Surface *FontText::solidText( std::string text )
 	{
-		if( this->m_cache ) SDL_FreeSurface( this->m_cache );
-		this->m_cache = TTF_RenderText_Solid( m_font->getFont(), text.c_str(), this->m_color );
+		if( this->m_cache ) delete this->m_cache;
+		this->m_cache = new SDL::Surface( TTF_RenderText_Solid( m_font->getFont(), text.c_str(), this->m_color ) );
+		if( !this->m_cache ) { throw new TTFException( "FontText::solidText" ); }
 		return this->m_cache;
 	}
 
-	SDL_Surface *FontText::shadedText( std::string text )
+	SDL::Surface *FontText::shadedText( std::string text )
 	{
-		if( this->m_cache ) SDL_FreeSurface( this->m_cache );
-		this->m_cache = TTF_RenderText_Shaded( m_font->getFont(), text.c_str(), this->m_color, this->m_background );
+		if( this->m_cache ) delete this->m_cache;
+		this->m_cache = new SDL::Surface( TTF_RenderText_Shaded( m_font->getFont(), text.c_str(), this->m_color, this->m_background ) );
+		if( !this->m_cache ) { throw new TTFException( "FontText::shadedText" ); }
 		return this->m_cache;
 	}
 
-	SDL_Surface *FontText::blendedText( std::string text )
+	SDL::Surface *FontText::blendedText( std::string text )
 	{
-		if( this->m_cache ) SDL_FreeSurface( this->m_cache );
-		this->m_cache = TTF_RenderText_Blended( m_font->getFont(), text.c_str(), this->m_color );
+		if( this->m_cache ) delete this->m_cache;
+		this->m_cache = new SDL::Surface( TTF_RenderText_Blended( m_font->getFont(), text.c_str(), this->m_color ) );
+		if( !this->m_cache ) { throw new TTFException( "FontText::blendedText" ); }
 		return this->m_cache;
 	}
 
-	SDL_Surface *FontText::getLastSurface( void )
+	SDL::Surface *FontText::getLastSurface( void )
 	{
 		return this->m_cache;
 	}
@@ -88,7 +99,7 @@ namespace bitfighter {
 			TTF_CloseFont( this->m_font );
 		}
 		this->m_font = TTF_OpenFont( path.c_str(), size );
-		if( !this->m_font ) { /* Throw an exception? */ }
+		if( !this->m_font ) { throw new TTFException( "FontText::shadedText" ); }
 		this->m_size = size;
 		this->m_familyname = std::string( TTF_FontFaceFamilyName( this->m_font ) );
 		this->m_fontstyle = std::string( TTF_FontFaceStyleName( this->m_font ) );

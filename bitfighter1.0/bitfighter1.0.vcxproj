@@ -84,23 +84,29 @@
     <ClInclude Include="application.hpp" />
     <ClInclude Include="authentication.hpp" />
     <ClInclude Include="client.hpp" />
+    <ClInclude Include="colours.hpp" />
     <ClInclude Include="exceptions.hpp" />
     <ClInclude Include="font.hpp" />
     <ClInclude Include="menuitem.hpp" />
     <ClInclude Include="menu.hpp" />
+    <ClInclude Include="point.hpp" />
+    <ClInclude Include="renderable.hpp" />
     <ClInclude Include="sdlutil.hpp" />
     <ClInclude Include="server.hpp" />
     <ClInclude Include="shapes.hpp" />
     <ClInclude Include="thread.hpp" />
+    <ClInclude Include="window.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="application.cpp" />
     <ClCompile Include="bitfighter1.0.cpp" />
+    <ClCompile Include="exceptions.cpp" />
     <ClCompile Include="font.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="menuitem.cpp" />
     <ClCompile Include="sdlutil.cpp" />
     <ClCompile Include="thread.cpp" />
+    <ClCompile Include="window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
