@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include "sdlutil.hpp"
+#include "renderable.hpp"
 
 #ifndef bitfighter_window_hpp
 #define bitfighter_window_hpp	1
@@ -27,6 +28,8 @@ namespace bitfighter {
 			int getRealFPS( void );
 			float getEstimatedFPS( void );
 
+			RenderableObject *newRenderable( RenderableObject *renderable );
+
 			virtual bool handleEvents( SDL_Event *e );
 
 		protected:
@@ -34,12 +37,13 @@ namespace bitfighter {
 			virtual void do_paint( Uint32 delta_milliseconds );
 			virtual void post_paint( void );
 
-			SDL_Window	*m_window;
-			Uint32		m_lastPaint;
-			Uint32		m_deltaCount;
-			Uint32		m_frameCount;
-			int			m_fps;
-			float		m_fps2;
+			SDL_Window						*m_window;
+			Uint32							m_lastPaint;
+			Uint32							m_deltaCount;
+			Uint32							m_frameCount;
+			int								m_fps;
+			float							m_fps2;
+			std::vector<RenderableObject *>	m_renderables;
 		};
 
 		class GLWindow : public Window {

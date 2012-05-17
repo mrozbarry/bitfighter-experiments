@@ -67,6 +67,13 @@ namespace bitfighter {
 		float Window::getEstimatedFPS( void )
 		{ return this->m_fps2; }
 
+		RenderableObject *Window::newRenderable( RenderableObject *renderable )
+		{
+			if( !renderable ) return NULL;
+			this->m_renderables.push_back( renderable );
+			return renderable;
+		}
+
 		void Window::pre_paint( void )
 		{ return; }
 		
@@ -114,13 +121,25 @@ namespace bitfighter {
 		}
 
 		GLWindow::~GLWindow( )
-		{ SDL_GL_DeleteContext( this->m_context ); }
+		{
+			for(unsigned int i=0; i < this->m_renderables.size(); i++) {
+				delete this->m_renderables[i];
+			}
+			SDL_GL_DeleteContext( this->m_context );
+		}
 
 		void GLWindow::pre_paint( void )
 		{ this->makeCurrent(); }
 		
 		void GLWindow::do_paint( Uint32 delta_milliseconds )
-		{ return; }
+		{
+			glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+			glLoadIdentity();
+
+			for(unsigned int i=0; i < this->m_renderables.size(); i++) {
+				this->m_renderables[i]->draw( );
+			}
+		}
 		
 		void GLWindow::post_paint( void )
 		{ SDL_GL_SwapWindow( this->m_window ); }

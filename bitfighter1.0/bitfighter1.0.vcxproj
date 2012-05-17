@@ -91,6 +91,7 @@
     <ClInclude Include="menu.hpp" />
     <ClInclude Include="point.hpp" />
     <ClInclude Include="renderable.hpp" />
+    <ClInclude Include="renderable_box.hpp" />
     <ClInclude Include="sdlutil.hpp" />
     <ClInclude Include="server.hpp" />
     <ClInclude Include="shapes.hpp" />
@@ -104,6 +105,8 @@
     <ClCompile Include="font.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="menuitem.cpp" />
+    <ClCompile Include="renderable.cpp" />
+    <ClCompile Include="renderable_box.cpp" />
     <ClCompile Include="sdlutil.cpp" />
     <ClCompile Include="thread.cpp" />
     <ClCompile Include="window.cpp" />

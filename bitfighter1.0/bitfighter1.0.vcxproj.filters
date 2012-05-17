@@ -16,6 +16,9 @@
     <Filter Include="Header Files\renderables">
       <UniqueIdentifier>{e5c35d2b-0f5d-47c4-b34b-d0717c251675}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\renderables">
+      <UniqueIdentifier>{e479c609-af92-49da-ac01-79ddf4ddfa60}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -60,11 +63,14 @@
     <ClInclude Include="window.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="renderable.hpp">
-      <Filter>Header Files\renderables</Filter>
-    </ClInclude>
     <ClInclude Include="point.hpp">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="renderable.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="renderable_box.hpp">
+      <Filter>Header Files\renderables</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -94,6 +100,12 @@
     </ClCompile>
     <ClCompile Include="window.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="renderable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="renderable_box.cpp">
+      <Filter>Source Files\renderables</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

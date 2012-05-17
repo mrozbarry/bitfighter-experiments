@@ -2,6 +2,7 @@
 #include "application.hpp"
 #include "menu.hpp"
 #include "menuitem.hpp"
+#include "renderable_box.hpp"
 
 namespace bitfighter {
 
@@ -51,17 +52,7 @@ namespace bitfighter {
 
 	void Application::run( void )
 	{
-		Menu *main = new Menu( 25, 300, 100, 150 );
-		main->addItem( new MenuText( this, "Sandbox" ), NULL );
-		main->addItem( new MenuText( this, "Join LAN/Internet Game" ), NULL );
-		main->addItem( new MenuText( this, "Host Game" ), NULL );
-		main->addItem( new MenuText( this, "Instructions" ), NULL );
-		main->addItem( new MenuText( this, "Options" ), NULL );
-		main->addItem( new MenuText( this, "Highscores" ), NULL );
-		main->addItem( new MenuText( this, "Level Editor" ), NULL );
-		main->addItem( new MenuText( this, "Credits" ), NULL );
-		main->addItem( new MenuText( this, "Exit" ), NULL );
-		main->render( );
+		this->windows[0]->newRenderable( new RenderableBox( Pointf(1.0f, 1.0f), Pointf(1.0f, 1.0f) ) );
 
 		while( this->dispatchEvents() ) {
 			for(unsigned int i=0; i < this->windows.size(); i++) {
