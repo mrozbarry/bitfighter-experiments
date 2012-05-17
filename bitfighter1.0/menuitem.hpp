@@ -5,7 +5,6 @@
 #include "font.hpp"
 #include "sdlutil.hpp"
 #include "application.hpp"
-#include "colours.hpp"
 
 #ifndef bitfighter_menuitem_hpp
 #define bitfighter_menuitem_hpp	1

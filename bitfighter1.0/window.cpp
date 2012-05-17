@@ -44,6 +44,10 @@ namespace bitfighter {
 				this->m_fps = this->m_frameCount;
 				this->m_frameCount = 0;
 				this->m_deltaCount -= 1000;
+
+				std::stringstream fpsdata;
+				fpsdata << "Bitfighter Renderer Test; realfps=" << this->m_fps << ", estimatedfps=" << this->m_fps2;
+				SDL_SetWindowTitle( this->m_window, fpsdata.str().c_str() );
 			}
 			this->m_frameCount += 1;
 			this->m_fps2 = 1000.0f / (float)delta * 1.0f;  // frames / second = fps | 1000/milliseconds*frames

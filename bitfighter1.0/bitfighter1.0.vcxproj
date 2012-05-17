@@ -84,7 +84,7 @@
     <ClInclude Include="application.hpp" />
     <ClInclude Include="authentication.hpp" />
     <ClInclude Include="client.hpp" />
-    <ClInclude Include="colours.hpp" />
+    <ClInclude Include="events.hpp" />
     <ClInclude Include="exceptions.hpp" />
     <ClInclude Include="font.hpp" />
     <ClInclude Include="menuitem.hpp" />

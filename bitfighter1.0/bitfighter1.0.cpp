@@ -10,9 +10,9 @@ using namespace bitfighter;
 int main(int argc, char* argv[])
 {
 	try {
-		Application app;
+		Application app( argc, argv );
 		app.newWindow( new SDL::GLWindow( "bitfighter1.0", 800, 600 ) );
-		app.addFont( "menu", new Font( "../contrib/zrnic rg.otf", 16 ) );
+		app.addFont( "menu", new Font( "../contrib/zrnic rg.otf", 16 ) ); // Should be moved into the Application
 		app.run();
 	} catch (SDLException sdlex) {
 		std::cout << sdlex.what() << std::endl;

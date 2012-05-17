@@ -40,7 +40,7 @@ namespace bitfighter {
 			Font		*font;
 		};
 
-		Application( );
+		Application( int argc, char *argv[] );
 		~Application( );
 
 		SDL::Window *newWindow( SDL::Window *w );
@@ -66,6 +66,9 @@ namespace bitfighter {
 
 		SDLThread					*threads[BITFIGHTER_ACTIVE_THREADS];
 		std::vector<AppFont>		fonts;
+
+	private:
+		void parseCommandLine( int argc, char *argv[] );
 	};
 
 }

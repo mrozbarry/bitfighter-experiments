@@ -1,16 +1,15 @@
 
 #include "renderable_box.hpp"
 
+#include <iostream>
+
 namespace bitfighter {
 
-	RenderableBox::RenderableBox( Pointf topleft, Pointf bottomright, Uint8 r, Uint8 g, Uint8 b )
+	RenderableBox::RenderableBox( Pointf topleft, Pointf bottomright, SDL::Color c )
 		: RenderableObject( topleft, -1.0f, true, RenderableObject::RecievesEvents_Never )
 		, m_bottomright( bottomright )
-	{
-		this->m_color.r = r;
-		this->m_color.g = g;
-		this->m_color.b = b;
-	}
+		, m_color( c )
+	{	}
 
 	RenderableBox::~RenderableBox()
 	{	}
@@ -22,10 +21,16 @@ namespace bitfighter {
 	{
 		glBegin( GL_QUADS );
 
-			glColor3i( this->m_color.r, this->m_color.g, this->m_color.b );
+			glColor4fv( this->m_color.toGLColor4vf( 0.5f ) );
 			glVertex3f( this->m_position.x, this->m_position.y, this->m_z );
+
+			glColor4fv( this->m_color.toGLColor4vf( 0.5f ) );
 			glVertex3f( this->m_bottomright.x, this->m_position.y, this->m_z );
+
+			glColor4fv( this->m_color.toGLColor4vf( 0.5f ) );
 			glVertex3f( this->m_bottomright.x, this->m_bottomright.y, this->m_z );
+
+			glColor4fv( this->m_color.toGLColor4vf( 0.5f ) );
 			glVertex3f( this->m_position.x, this->m_bottomright.y, this->m_z );
 
 		glEnd( );

@@ -57,9 +57,6 @@
     <ClInclude Include="sdlutil.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="colours.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="window.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -71,6 +68,9 @@
     </ClInclude>
     <ClInclude Include="renderable_box.hpp">
       <Filter>Header Files\renderables</Filter>
+    </ClInclude>
+    <ClInclude Include="events.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

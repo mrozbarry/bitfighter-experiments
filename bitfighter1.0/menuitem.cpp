@@ -62,7 +62,7 @@ namespace bitfighter {
 		this->m_app->getFonts( "menu", fonts );
 		FontText *text = new FontText( fonts[0] );
 
-		text->setColor( blue80 );
+		text->setColor( SDL::Color("blue20").toSDLColor() );
 
 		text->blendedText( this->m_text );
 

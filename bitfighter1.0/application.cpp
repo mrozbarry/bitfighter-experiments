@@ -6,7 +6,7 @@
 
 namespace bitfighter {
 
-	Application::Application( )
+	Application::Application( int argc, char *argv[] )
 	{
 		if( SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER) < 0 ) { throw new SDLException("Application"); }
 
@@ -38,7 +38,7 @@ namespace bitfighter {
 
 	SDL::Window *Application::newWindow( SDL::Window *w )
 	{
-		if( !w ) throw new BitfighterException( "Application", "Cannot add NULL window", __FILE__, __LINE__ );
+		if( !w ) throw new BitfighterException( "Application", "Cannot add NULL window" );
 		this->windows.push_back( w );
 		return w;
 	}
@@ -52,7 +52,11 @@ namespace bitfighter {
 
 	void Application::run( void )
 	{
-		this->windows[0]->newRenderable( new RenderableBox( Pointf(1.0f, 1.0f), Pointf(1.0f, 1.0f) ) );
+		for(int i=0; i < 300; i++) {
+			this->windows[0]->newRenderable(
+				new RenderableBox( Pointf(float(rand() % 800),float(rand() % 600)), Pointf(float(rand() % 800), float(rand() % 600)), SDL::Color(rand()%255,rand()%255,rand()%255) )
+			);
+		}
 
 		while( this->dispatchEvents() ) {
 			for(unsigned int i=0; i < this->windows.size(); i++) {
@@ -122,4 +126,8 @@ namespace bitfighter {
 		this->windows.erase( this->windows.begin() + index );
 	}
 
+	void Application::parseCommandLine( int argc, char *argv[] )
+	{
+		// Do something here?
+	}
 }
