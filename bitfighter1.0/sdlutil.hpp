@@ -15,7 +15,7 @@ namespace bitfighter {
 
 		class Color {
 		public:
-			Color( Color& copy );
+			Color( const Color& copy );
 			Color( Uint8 r, Uint8 g, Uint8 b );
 			Color( Uint8 gray );
 			Color( std::string htmlcolor );

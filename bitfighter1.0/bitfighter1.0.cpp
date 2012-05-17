@@ -14,12 +14,6 @@ int main(int argc, char* argv[])
 		app.newWindow( new SDL::GLWindow( "bitfighter1.0", 800, 600 ) );
 		app.addFont( "menu", new Font( "../contrib/zrnic rg.otf", 16 ) ); // Should be moved into the Application
 		app.run();
-	} catch (SDLException sdlex) {
-		std::cout << sdlex.what() << std::endl;
-	} catch (TTFException ttfex ) {
-		std::cout << ttfex.what() << std::endl;
-	} catch (GLException glex ) {
-		std::cout << glex.what() << std::endl;
 	} catch (std::exception ex) {
 		std::cout << ex.what() << std::endl;
 	}

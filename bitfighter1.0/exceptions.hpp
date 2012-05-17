@@ -15,6 +15,7 @@ namespace bitfighter {
 	class BitfighterException : public std::exception {
 	public:
 		BitfighterException( std::string reference, std::string message, const char *filename = NULL, int linenumber = -1 );
+		~BitfighterException( ) throw() {}
 		const char *what() const throw();
 	private:
 		std::string m_what;
@@ -23,6 +24,7 @@ namespace bitfighter {
 	class SDLException : public std::exception {
 	public:
 		SDLException( std::string reference, const char *filename = NULL, int linenumber = -1 );
+		~SDLException( ) throw() {}
 		const char *what() const throw();
 	private:
 		std::string m_what;
@@ -31,6 +33,7 @@ namespace bitfighter {
 	class TTFException : public std::exception {
 	public:
 		TTFException( std::string reference, const char *filename = NULL, int linenumber = -1 );
+		~TTFException( ) throw() {}
 		const char *what() const throw();
 	private:
 		std::string m_what;
@@ -39,6 +42,7 @@ namespace bitfighter {
 	class GLException : public std::exception {
 	public:
 		GLException( std::string reference, int code, const char *filename = NULL, int linenumber = -1 );
+		~GLException( ) throw() {}
 		const char *what() const throw();
 
 		static int glError( void );

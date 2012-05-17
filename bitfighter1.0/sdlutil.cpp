@@ -57,7 +57,7 @@ namespace bitfighter {
 		};
 
 		/* SDL::Color */
-		Color::Color( Color& copy )
+		Color::Color( const Color& copy )
 			: r( copy.r )
 			, g( copy.g )
 			, b( copy.b )
