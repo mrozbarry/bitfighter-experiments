@@ -11,6 +11,7 @@ namespace bitfighter {
 	class RenderableBox : public RenderableObject {
 	public:
 		RenderableBox( Pointf topleft, Pointf bottomright, SDL::Color c = SDL::Color("white") );
+		RenderableBox( Pointf topleft, Pointf bottomright, SDL::Surface *buffer );
 		~RenderableBox();
 
 		virtual bool handleEvent( SDL_Event *e );
@@ -18,8 +19,9 @@ namespace bitfighter {
 	protected:
 		virtual void render( Uint32 delta );
 
-		Pointf		m_bottomright;
-		SDL::Color	m_color;
+		Pointf			m_bottomright;
+		SDL::Color		m_color;
+		SDL::Surface	*m_surface;
 	};
 
 }

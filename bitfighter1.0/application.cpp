@@ -52,11 +52,12 @@ namespace bitfighter {
 
 	void Application::run( void )
 	{
-		for(int i=0; i < 300; i++) {
+		for(int i=0; i < 100; i++) {
 			this->windows[0]->newRenderable(
 				new RenderableBox( Pointf(float(rand() % 800),float(rand() % 600)), Pointf(float(rand() % 800), float(rand() % 600)), SDL::Color(rand()%255,rand()%255,rand()%255) )
 			);
 		}
+		this->windows[0]->newRenderable( new RenderableBox( Pointf( 50.0f,50.0f), Pointf(250.0f, 250.0f), new SDL::Surface( "../contrib/testimg.bmp" ) ) );
 
 		while( this->dispatchEvents() ) {
 			for(unsigned int i=0; i < this->windows.size(); i++) {
