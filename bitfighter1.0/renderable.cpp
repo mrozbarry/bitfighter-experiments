@@ -1,15 +1,23 @@
 
 #include "renderable.hpp"
+#include "window.hpp"
+#include "exceptions.hpp"
 
 namespace bitfighter {
 
-	RenderableObject::RenderableObject( Pointf pos, float z, bool vis, Uint32 recieves_events )
-		: m_position( pos )
+	RenderableObject::RenderableObject( Window *window, SDL::Rect bounds, float z, bool vis, Uint32 recieves_events )
+		: m_bound( bounds )
 		, m_z( z )
 		, m_visible( vis )
 		, m_recieve_events( recieves_events )
 		, m_last_render( SDL_GetTicks() )
-	{	}
+		, m_window( window )
+	{
+		if( !this->m_window ) throw new BitfighterException("RenderableObject", "Null window object");
+	}
+
+	Window *RenderableObject::getWindow( void )
+	{ return this->m_window; }
 
 	bool RenderableObject::visible( void )
 	{ return this->m_visible; }
@@ -17,11 +25,11 @@ namespace bitfighter {
 	void RenderableObject::visible( bool toggle )
 	{ this->m_visible = toggle; }
 
-	Pointf RenderableObject::position( void )
-	{ return this->m_position; }
+	SDL::Rect RenderableObject::boundary( void )
+	{ return this->m_bound; }
 
-	void RenderableObject::position( Pointf pos )
-	{ this->m_position = pos; }
+	void RenderableObject::boundary( SDL::Rect bounds )
+	{ this->m_bound = bounds; }
 
 	float RenderableObject::zIndex( void )
 	{ return this->m_z; }

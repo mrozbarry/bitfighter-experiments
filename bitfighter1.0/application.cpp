@@ -1,12 +1,13 @@
 
 #include "application.hpp"
-#include "menu.hpp"
 #include "menuitem.hpp"
 #include "renderable_box.hpp"
+#include "renderable_menu.hpp"
 
 namespace bitfighter {
 
 	Application::Application( int argc, char *argv[] )
+		: m_window_active(NULL)
 	{
 		if( SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER) < 0 ) { throw new SDLException("Application"); }
 
@@ -36,10 +37,11 @@ namespace bitfighter {
 		SDL_Quit();
 	}
 
-	SDL::Window *Application::newWindow( SDL::Window *w )
+	Window *Application::newWindow( Window *w )
 	{
 		if( !w ) throw new BitfighterException( "Application", "Cannot add NULL window" );
 		this->windows.push_back( w );
+		this->m_window_active = w;
 		return w;
 	}
 
@@ -52,12 +54,19 @@ namespace bitfighter {
 
 	void Application::run( void )
 	{
-		for(int i=0; i < 100; i++) {
-			this->windows[0]->newRenderable(
-				new RenderableBox( Pointf(float(rand() % 800),float(rand() % 600)), Pointf(float(rand() % 800), float(rand() % 600)), SDL::Color(rand()%255,rand()%255,rand()%255) )
-			);
-		}
-		this->windows[0]->newRenderable( new RenderableBox( Pointf( 50.0f,50.0f), Pointf(250.0f, 250.0f), new SDL::Surface( "../contrib/testimg.bmp" ) ) );
+		Window *wnd = this->newWindow( new GLWindow( this, "bitfighter1.0", 800, 600 ) );
+		this->addFont( "menu", new Font( "../contrib/zrnic rg.otf", 34 ) ); // Should be moved into the Application
+		RenderableMenu *rmenu = new RenderableMenu( wnd, Pointf(30, 20), new SDL::Color("blue80"), new SDL::Color("yellow40") );
+		rmenu->addItem( new MenuText( rmenu, "Join LAN/Internet Game" ) );
+		rmenu->addItem( new MenuText( rmenu, "Host Game" ) );
+		rmenu->addItem( new MenuText( rmenu, "Instructions" ) );
+		rmenu->addItem( new MenuText( rmenu, "Options" ) );
+		rmenu->addItem( new MenuText( rmenu, "Highscores" ) );
+		rmenu->addItem( new MenuText( rmenu, "Level Editor" ) );
+		rmenu->addItem( new MenuText( rmenu, "Credits" ) );
+		rmenu->addItem( new MenuText( rmenu, "Exit" ) );
+		rmenu->visible( false );
+		wnd->newRenderable( rmenu );
 
 		while( this->dispatchEvents() ) {
 			for(unsigned int i=0; i < this->windows.size(); i++) {
@@ -69,15 +78,22 @@ namespace bitfighter {
 	bool Application::dispatchEvents( void )
 	{
 		SDL_Event e;
+		int windex=0;
 		while( SDL_PollEvent( &e ) ) {
 			switch( e.type ) {
 			case SDL_QUIT:
 				return false;
 				break;
 			case SDL_WINDOWEVENT_CLOSE:
-				closeWindow( e.window.windowID );
+				this->closeWindow( e.window.windowID, &e );
 				if( this->windows.size() == 0 ) return false;
 				break;
+			case SDL_WINDOWEVENT_FOCUS_GAINED:
+				windex = this->getWindow( e.window.windowID );
+				if( windex >= 0 ) this->m_window_active = this->windows[windex];
+				break;
+			default:
+				if( this->m_window_active ) this->m_window_active->handleEvents(&e);
 			}
 		}
 		return true;
@@ -120,9 +136,14 @@ namespace bitfighter {
 		return -1;
 	}
 
-	void Application::closeWindow( Uint32 window_id )
+	void Application::closeWindow( Uint32 window_id, SDL_Event *e )
 	{
 		int index = this->getWindow( window_id );
+		if( window_id == this->m_window_active->getWindowId() ) {
+			int wid = (this->windows.size() > 1) ? ((index > 0) ? index-1 : index+1) : -1;
+			this->m_window_active = this->windows[wid];
+		}
+		if( e ) this->windows[index]->handleEvents( e );
 		delete this->windows[index];
 		this->windows.erase( this->windows.begin() + index );
 	}

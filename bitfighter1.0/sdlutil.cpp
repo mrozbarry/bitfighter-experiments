@@ -136,6 +136,83 @@ namespace bitfighter {
 			return false;
 		}
 
+		/* SDL::Rect */
+		Rect::Rect( const Rect& copy )
+			: x( copy.x )
+			, y( copy.y )
+			, w( copy.w )
+			, h( copy.h )
+		{	}
+
+		Rect::Rect( Pointf p1, Pointf p2 )
+			: x( p1.x )
+			, y( p1.y )
+			, w( p2.x - p1.x )
+			, h( p2.y - p1.y )
+		{	}
+
+		Rect::Rect( Pointf p1, float _w, float _h )
+			: x( p1.x )
+			, y( p1.y )
+			, w( _w )
+			, h( _w )
+		{	}
+
+		Rect::Rect( float _x, float _y, float _w, float _h )
+			: x( _x )
+			, y( _y )
+			, w( _w )
+			, h( _h )
+		{	}
+		Rect::Rect( float _w, float _h )
+			: x( 0 )
+			, y( 0 )
+			, w( _w )
+			, h( _h )
+		{	}
+		
+		Rect::Rect( SDL_Rect r )
+			: x( (float)r.x )
+			, y( (float)r.y )
+			, w( (float)r.w )
+			, h( (float)r.h )
+		{	}
+
+		Pointf Rect::bottomleft( void )
+		{ return Pointf( this->x, this->y ); }
+
+		Pointf Rect::topleft( void )
+		{ return Pointf( this->x, this->y + this->h ); }
+
+		Pointf Rect::topright( void )
+		{ return Pointf( this->x + this->w, this->y + this->h ); }
+		
+		Pointf Rect::bottomright( void )
+		{ return Pointf( this->x + this->w, this->y ); }
+
+		bool Rect::contains( Pointf p )
+		{
+			Pointf a = this->bottomleft();
+			Pointf b = this->topright();
+			float minx = a.x > b.x ? b.x : a.x;
+			float maxx = a.x < b.x ? b.x : a.x;
+			float miny = a.y > b.y ? b.y : a.y;
+			float maxy = a.y < b.y ? b.y : a.y;
+			if( p.x >= minx && p.x <= maxx ) {
+				if( p.y >= miny && p.y <= maxy ) return true;
+			}
+			return false;
+		}
+
+		SDL_Rect Rect::toSDLRect( void )
+		{
+			SDL_Rect r;
+			r.x = (int)this->x;
+			r.y = (int)this->y;
+			r.w = (int)this->w;
+			r.h = (int)this->h;
+			return r;
+		}
 
 		/* SDL::Surface */
 		Surface::Surface( SDL_Surface *surface )
@@ -219,6 +296,11 @@ namespace bitfighter {
 			SDL_BlitSurface( this->m_surface, &this->m_clip, dest->surface(), region );
 		}
 
+		void Surface::fillColor( SDL::Color c )
+		{
+			SDL_FillRect( this->m_surface, NULL, SDL_MapRGB( this->m_surface->format, c.r, c.g, c.b ) );
+		}
+
 		int Surface::w( void )
 		{
 			if( !this->m_surface ) { throw new BitfighterException( "Surface", "Null surface" ); }
@@ -230,6 +312,12 @@ namespace bitfighter {
 			if( !this->m_surface ) { throw new BitfighterException( "Surface", "Null surface" ); }
 			return this->m_surface->h;
 		}
+
+		int Surface::w_pow2( void )
+		{ return Surface::next_pow2( this->w() ); }
+
+		int Surface::h_pow2( void )
+		{ return Surface::next_pow2( this->h() ); }
 
 		void Surface::setClip( int x, int y, int w, int h )
 		{
@@ -263,8 +351,6 @@ namespace bitfighter {
 			assert( this->m_surface != NULL );
 			int glerror = 0;
 			if( !this->m_hastexture ) {
-				int w = (int)std::pow(2, std::ceil( std::log((float)this->m_surface->w) / std::log(2.0f) ) );
-
 				int bpp;
 				Uint32 Rmask, Gmask, Bmask, Amask;
 				SDL_PixelFormatEnumToMasks(
@@ -272,8 +358,8 @@ namespace bitfighter {
 					&Rmask, &Gmask, &Bmask, &Amask
 				);
 
-				int glw = Surface::next_pow2( this->m_surface->w );
-				int glh = Surface::next_pow2( this->m_surface->h );
+				int glw = this->w_pow2();
+				int glh = this->h_pow2();
         
 				/* Create surface that will hold pixels passed into OpenGL. */
 				SDL_Surface *img_rgba8888 = SDL_CreateRGBSurface(0,

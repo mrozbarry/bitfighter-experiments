@@ -32,13 +32,16 @@ namespace bitfighter {
 
 		class Rect {
 		public:
-			Rect( Rect& copy );
+			Rect( const Rect& copy );
 			Rect( Pointf p1, Pointf p2 );
-			Rect( float x, float y, float w, float h );
-			Rect( float w, float h );
+			Rect( Pointf p1, float _w, float _h );
+			Rect( float _x, float _y, float _w, float _h );
+			Rect( float _w, float _h );
 			Rect( SDL_Rect r );
 
+			Pointf bottomleft( void );
 			Pointf topleft( void );
+			Pointf topright( void );
 			Pointf bottomright( void );
 
 			bool contains( Pointf p );
@@ -59,8 +62,13 @@ namespace bitfighter {
 			SDL_Surface *surface( void );
 			void blit( Surface *dest, SDL_Rect *region );
 
+			void fillColor( SDL::Color c );
+
 			int w( void );
 			int h( void );
+
+			int w_pow2( void );
+			int h_pow2( void );
 
 			void setClip( int x, int y, int w, int h );
 			void setClip( SDL_Rect r );

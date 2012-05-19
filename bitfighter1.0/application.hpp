@@ -43,7 +43,7 @@ namespace bitfighter {
 		Application( int argc, char *argv[] );
 		~Application( );
 
-		SDL::Window *newWindow( SDL::Window *w );
+		Window *newWindow( Window *w );
 
 		SDLThreadMessage *newTask( SDLThreadMessage *task, bool highPriority = false );
 
@@ -57,12 +57,13 @@ namespace bitfighter {
 		int getShortestThreadingQueue( void );
 
 		int getWindow( Uint32 window_id );
-		void closeWindow( Uint32 window_id );
+		void closeWindow( Uint32 window_id, SDL_Event *e = NULL );
 
 		//authentication *auth;
 		//client *local;
 
-		std::vector<SDL::Window *>	windows;
+		std::vector<Window *>		windows;
+		Window						*m_window_active;
 
 		SDLThread					*threads[BITFIGHTER_ACTIVE_THREADS];
 		std::vector<AppFont>		fonts;

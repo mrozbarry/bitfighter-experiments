@@ -45,9 +45,6 @@
     <ClInclude Include="shapes.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="menu.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="menuitem.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -69,8 +66,8 @@
     <ClInclude Include="renderable_box.hpp">
       <Filter>Header Files\renderables</Filter>
     </ClInclude>
-    <ClInclude Include="events.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="renderable_menu.hpp">
+      <Filter>Header Files\renderables</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -81,9 +78,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="thread.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="menuitem.cpp">
@@ -105,6 +99,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="renderable_box.cpp">
+      <Filter>Source Files\renderables</Filter>
+    </ClCompile>
+    <ClCompile Include="renderable_menu.cpp">
       <Filter>Source Files\renderables</Filter>
     </ClCompile>
   </ItemGroup>

@@ -84,14 +84,13 @@
     <ClInclude Include="application.hpp" />
     <ClInclude Include="authentication.hpp" />
     <ClInclude Include="client.hpp" />
-    <ClInclude Include="events.hpp" />
     <ClInclude Include="exceptions.hpp" />
     <ClInclude Include="font.hpp" />
     <ClInclude Include="menuitem.hpp" />
-    <ClInclude Include="menu.hpp" />
     <ClInclude Include="point.hpp" />
     <ClInclude Include="renderable.hpp" />
     <ClInclude Include="renderable_box.hpp" />
+    <ClInclude Include="renderable_menu.hpp" />
     <ClInclude Include="sdlutil.hpp" />
     <ClInclude Include="server.hpp" />
     <ClInclude Include="shapes.hpp" />
@@ -103,10 +102,10 @@
     <ClCompile Include="bitfighter1.0.cpp" />
     <ClCompile Include="exceptions.cpp" />
     <ClCompile Include="font.cpp" />
-    <ClCompile Include="menu.cpp" />
     <ClCompile Include="menuitem.cpp" />
     <ClCompile Include="renderable.cpp" />
     <ClCompile Include="renderable_box.cpp" />
+    <ClCompile Include="renderable_menu.cpp" />
     <ClCompile Include="sdlutil.cpp" />
     <ClCompile Include="thread.cpp" />
     <ClCompile Include="window.cpp" />
